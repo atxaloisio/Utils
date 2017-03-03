@@ -14,4 +14,6 @@ namespace Utils
         public const int OP_SALVAR = 4;
         public const int OP_IMPRIMIR = 5;
     }
+
+
 }
