@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="ReferencedDescriptionAttribute.cs" />
     <Compile Include="Sequence.cs" />
+    <Compile Include="TrataException.cs" />
     <Compile Include="ValidateUtils.cs" />
   </ItemGroup>
   <ItemGroup>
