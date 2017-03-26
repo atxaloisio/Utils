@@ -17,7 +17,8 @@ namespace Utils
         /// <returns></returns>
         public static long GetNextVal(string Sequence)
         {
-            string ConnectionString = "server=localhost;user id=root;Password=pass4admin;database=dbintegracao";
+            string ConnectionString = ConfigurationManager.ConnectionStrings["prjbase.Properties.Settings.dbintegracaoConnectionString"].ConnectionString;
+                //"server=localhost;user id=root;Password=pass4admin;database=dbintegracao";
             long retorno = 0;
             MySqlConnection con = new MySqlConnection(ConnectionString);
             try
