@@ -65,6 +65,7 @@
     <Compile Include="DataGridViewMaskedTextControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ImagemFromDB.cs" />
     <Compile Include="ImprimirDireto.cs" />
     <Compile Include="Parametro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
