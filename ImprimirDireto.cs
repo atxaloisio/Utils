@@ -29,9 +29,9 @@ namespace Utils
             return stream;
         }
 
-        public virtual void Print(LocalReport Report)
+        public virtual void Print(LocalReport Report, PageProps PageProps)
         {
-            Export(Report);
+            Export(Report, PageProps);
 
             if (m_streams == null || m_streams.Count == 0)
                 throw new Exception("Error: no stream to print.");
@@ -72,18 +72,24 @@ namespace Utils
             ev.HasMorePages = (m_currentPageIndex < m_streams.Count);
         }
 
-        private void Export(LocalReport Report)
-        {
-            string deviceInfo =
+        private void Export(LocalReport Report, PageProps PageProps)
+        {            
+            string deviceInfo = string.Format(
           @"<DeviceInfo>
                 <OutputFormat>EMF</OutputFormat>
-                <PageWidth>8.27in</PageWidth>
-                <PageHeight>11.69in</PageHeight>
-                <MarginTop>0in</MarginTop>
-                <MarginLeft>0in</MarginLeft>
-                <MarginRight>0in</MarginRight>
-                <MarginBottom>0in</MarginBottom>
-            </DeviceInfo>";
+                <PageWidth>{0}in</PageWidth>
+                <PageHeight>{1}in</PageHeight>
+                <MarginTop>{2}in</MarginTop>
+                <MarginLeft>{3}in</MarginLeft>
+                <MarginRight>{4}in</MarginRight>
+                <MarginBottom>{5}in</MarginBottom>
+            </DeviceInfo>",
+            PageProps.PageWidth,
+            PageProps.PageHeight,
+            PageProps.MarginTop, 
+            PageProps.MarginLeft, 
+            PageProps.MarginRight, 
+            PageProps.MarginBottom);
             Warning[] warnings;
             m_streams = new List<Stream>();
             Report.Render("Image", deviceInfo, CreateStream,
