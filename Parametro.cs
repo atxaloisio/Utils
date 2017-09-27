@@ -116,5 +116,37 @@ namespace Utils
                 con.Dispose();
             }
         }
+
+        public static bool UtilizaFilial()
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["prjbase.Properties.Settings.dbintegracaoConnectionString"].ConnectionString;
+            bool retorno = false;
+            MySqlConnection con = new MySqlConnection(ConnectionString);
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(Id) as contagem  FROM filial", con);
+                
+                MySqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {                    
+                    retorno = dr.GetInt32("contagem") > 0;
+                }
+                dr.Close();
+                dr.Dispose();
+                cmd.Dispose();
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
     }
 }
